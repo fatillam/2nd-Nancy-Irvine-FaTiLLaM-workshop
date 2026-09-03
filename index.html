@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2nd Nancy–Irvine FaTiLLaM Workshop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #1a1a1a;
+    --ink-soft: #444;
+    --ink-faint: #8a8a8a;
+    --paper: #fbf9f4;
+    --rule: #d8d2c4;
+    --accent: #6b2d2d;
+    --serif: 'EB Garamond', Georgia, 'Times New Roman', serif;
+    --sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: var(--serif);
+    font-size: 19px;
+    line-height: 1.55;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .wrap {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 4rem 1.75rem 6rem;
+  }
+
+  /* ---------- Header ---------- */
+  header.masthead {
+    text-align: center;
+    padding-bottom: 2.5rem;
+    border-bottom: 1px solid var(--rule);
+    margin-bottom: 3rem;
+  }
+
+  .eyebrow {
+    font-family: var(--sans);
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 1.5rem;
+  }
+
+  h1 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(2rem, 5vw, 2.9rem);
+    line-height: 1.15;
+    margin: 0 0 0.5rem;
+    letter-spacing: -0.01em;
+  }
+
+  .subtitle {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.3rem;
+    color: var(--ink-soft);
+    margin: 0 0 1.75rem;
+    font-weight: 400;
+  }
+
+  .meta {
+    font-family: var(--sans);
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+    letter-spacing: 0.04em;
+  }
+
+  .meta .sep {
+    display: inline-block;
+    margin: 0 0.6rem;
+    color: var(--ink-faint);
+  }
+
+  /* ---------- Section headings ---------- */
+  h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.5rem;
+    margin: 3.5rem 0 1.5rem;
+    letter-spacing: -0.005em;
+    border-bottom: 1px solid var(--rule);
+    padding-bottom: 0.5rem;
+  }
+
+  h3.day {
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: 0.75rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin: 2.5rem 0 0.35rem;
+  }
+
+  .day-venue {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 0.95rem;
+    color: var(--ink-faint);
+    margin: 0 0 1.25rem;
+    line-height: 1.4;
+  }
+
+  /* ---------- Description ---------- */
+  .description p {
+    margin: 0 0 1rem;
+    color: var(--ink-soft);
+  }
+
+  .description a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(107, 45, 45, 0.3);
+    transition: border-color 0.2s;
+  }
+  .description a:hover { border-bottom-color: var(--accent); }
+
+  /* ---------- Schedule ---------- */
+  .schedule {
+    margin-top: 0.5rem;
+  }
+
+  .slot {
+    display: grid;
+    grid-template-columns: 7.5rem 1fr;
+    gap: 1.25rem;
+    padding: 0.85rem 0;
+    border-bottom: 1px solid var(--rule);
+    align-items: baseline;
+  }
+
+  .slot:last-child { border-bottom: none; }
+
+  .slot .time {
+    font-family: var(--sans);
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+    letter-spacing: 0.02em;
+    font-variant-numeric: tabular-nums;
+    padding-top: 0.15rem;
+  }
+
+  .slot .content {
+    font-family: var(--serif);
+  }
+
+  .slot .speaker {
+    font-weight: 500;
+    color: var(--ink);
+  }
+
+  .slot .affiliation {
+    color: var(--ink-faint);
+    font-style: italic;
+    font-size: 0.95em;
+  }
+
+  .slot .talk {
+    display: block;
+    color: var(--ink-soft);
+    font-style: italic;
+    margin-top: 0.1rem;
+    font-size: 0.97em;
+  }
+
+  .slot.break .content {
+    color: var(--ink-faint);
+    font-style: italic;
+    font-size: 0.95em;
+  }
+
+  .slot a.talk-link {
+    color: inherit;
+    text-decoration: none;
+    border-bottom: 1px dotted var(--ink-faint);
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .slot a.talk-link:hover {
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  .panalm-tag {
+    display: inline-block;
+    font-family: var(--sans);
+    font-size: 0.62rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-left: 0.5rem;
+    padding: 0.1rem 0.4rem;
+    border: 1px solid rgba(107, 45, 45, 0.35);
+    border-radius: 2px;
+    vertical-align: 0.15em;
+    text-decoration: none;
+    transition: background 0.2s, color 0.2s;
+  }
+  .panalm-tag:hover {
+    background: var(--accent);
+    color: var(--paper);
+  }
+
+  /* ---------- Abstracts ---------- */
+  .abstract {
+    padding: 1.75rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .abstract:last-child { border-bottom: none; }
+
+  .abstract h3 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 1.25rem;
+    margin: 0 0 0.35rem;
+    line-height: 1.3;
+    letter-spacing: -0.005em;
+    scroll-margin-top: 2rem;
+  }
+
+  .abstract .who {
+    font-family: var(--sans);
+    font-size: 0.78rem;
+    letter-spacing: 0.05em;
+    color: var(--ink-faint);
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+  }
+
+  .abstract p {
+    margin: 0 0 0.9rem;
+    color: var(--ink-soft);
+    text-align: justify;
+    hyphens: auto;
+  }
+  .abstract p:last-child { margin-bottom: 0; }
+
+  .abstract .nb {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 0.95em;
+    color: var(--ink-faint);
+    padding: 0.5rem 0.9rem;
+    border-left: 2px solid var(--rule);
+    margin: 0 0 1rem;
+    text-align: left;
+  }
+  .abstract .nb a {
+    color: var(--accent);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(107, 45, 45, 0.3);
+  }
+  .abstract .nb a:hover { border-bottom-color: var(--accent); }
+
+  .tba {
+    color: var(--accent);
+    font-style: italic;
+    opacity: 0.75;
+  }
+
+  /* ---------- Footer ---------- */
+  footer {
+    margin-top: 5rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--rule);
+    font-family: var(--sans);
+    font-size: 0.75rem;
+    color: var(--ink-faint);
+    text-align: center;
+    letter-spacing: 0.05em;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 560px) {
+    .wrap { padding: 2.5rem 1.25rem 4rem; }
+    body { font-size: 17px; }
+    .slot {
+      grid-template-columns: 1fr;
+      gap: 0.25rem;
+    }
+    .slot .time {
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+    .meta .sep { display: none; }
+    .meta > span { display: block; margin: 0.2rem 0; }
+  }
+
+  @media print {
+    body { background: white; font-size: 11pt; }
+    .wrap { max-width: none; padding: 0.5in; }
+    h2, h3.day { page-break-after: avoid; }
+    .abstract { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header class="masthead">
+    <div class="eyebrow">FaTiLLaM &middot; Nancy &mdash; Irvine</div>
+    <h1>2nd Nancy–Irvine FaTiLLaM Workshop</h1>
+    <p class="subtitle">Formalization as Translation in Logic, Language, and Mathematics</p>
+    <div class="meta">
+      <span>11–12 September 2026</span>
+      <span class="sep">·</span>
+      <span>Nancy, France</span>
+    </div>
+  </header>
+
+  <section class="description">
+    <p>This event is part of <em>FaTiLLaM</em> (Formalization as Translation in Logic, Language, and Mathematics), a five-year joint research project funded by the CNRS, the Université de Lorraine, and the University of California, Irvine.</p>
+    <p>The project is carried out jointly by the <a href="https://poincare.univ-lorraine.fr/">Archives Henri-Poincaré</a> (CNRS UMR 7117), a research unit of the Université de Lorraine in Nancy and the Université de Strasbourg, and the <a href="https://www.calpha.socsci.uci.edu/">Center for the Advancement of Logic, its Philosophy, History, and Applications</a> (C-ALPHA) at the University of California, Irvine.</p>
+  </section>
+
+  <section>
+    <h2>Schedule</h2>
+
+    <h3 class="day">Friday, 11 September</h3>
+    <p class="day-venue">Salle internationale (324), bâtiment Libération &middot; 91 avenue de la Libération, 54001 Nancy</p>
+    <div class="schedule">
+      <div class="slot">
+        <div class="time">11:15 – 12:30</div>
+        <div class="content">
+          <span class="speaker">Greg Scontras</span> <span class="affiliation">(Irvine)</span>
+          <a class="talk-link" href="#scontras"><span class="talk">Projection without lexically-specified presupposition</span></a>
+        </div>
+      </div>
+      <div class="slot break">
+        <div class="time">12:30 – 13:30</div>
+        <div class="content">Lunch</div>
+      </div>
+      <div class="slot">
+        <div class="time">13:30 – 14:45</div>
+        <div class="content">
+          <span class="speaker">Kai Wehmeier</span> <span class="affiliation">(Irvine)</span>
+          <a class="talk-link" href="#wehmeier"><span class="talk">Universal Logical Grammar</span></a>
+          <a class="panalm-tag" href="https://www.panalm.org/" title="Also a contribution to the Paris–Nancy Colloquium in Logic and the Philosophy of Mathematics">PANALM</a>
+        </div>
+      </div>
+      <div class="slot break">
+        <div class="time">14:45 – 15:00</div>
+        <div class="content">Coffee</div>
+      </div>
+      <div class="slot">
+        <div class="time">15:00 – 16:15</div>
+        <div class="content">
+          <span class="speaker">Antoine Mercier</span> <span class="affiliation">(Irvine)</span>
+          <a class="talk-link" href="#mercier"><span class="talk">What is the elementary theory of the category of sets?</span></a>
+        </div>
+      </div>
+      <div class="slot break">
+        <div class="time">16:15 – 16:30</div>
+        <div class="content">Coffee</div>
+      </div>
+      <div class="slot">
+        <div class="time">16:30 – 17:45</div>
+        <div class="content">
+          <span class="speaker">Daniel Usma Gomez</span> <span class="affiliation">(Nancy)</span>
+          <a class="talk-link" href="#usma-gomez"><span class="talk">Title TBA</span></a>
+        </div>
+      </div>
+    </div>
+
+    <h3 class="day">Saturday, 12 September</h3>
+    <p class="day-venue">Salle de conférences, Ibis Styles Nancy Centre Gare &middot; 3 rue de l&rsquo;armée Patton, 54000 Nancy</p>
+    <div class="schedule">
+      <div class="slot">
+        <div class="time">9:30 – 10:45</div>
+        <div class="content">
+          <span class="speaker">Jean-Philippe Narboux</span> <span class="affiliation">(Strasbourg)</span>
+          <a class="talk-link" href="#narboux"><span class="talk">&lsquo;Gas against gas&rsquo;: Wittgenstein and Hardy on Mathematical Proof</span></a>
+        </div>
+      </div>
+      <div class="slot break">
+        <div class="time">10:45 – 11:00</div>
+        <div class="content">Coffee</div>
+      </div>
+      <div class="slot">
+        <div class="time">11:00 – 12:15</div>
+        <div class="content">
+          <span class="speaker">Ryota Akiyoshi</span> <span class="affiliation">(Tokyo)</span>
+          <a class="talk-link" href="#akiyoshi"><span class="talk">Takeuti&rsquo;s Pluralism in Light of Gödel</span></a>
+        </div>
+      </div>
+      <div class="slot break">
+        <div class="time">12:15 – 14:00</div>
+        <div class="content">Lunch</div>
+      </div>
+      <div class="slot">
+        <div class="time">14:00 – 15:15</div>
+        <div class="content">
+          <span class="speaker">Orestis Dimou Belegratis</span> <span class="affiliation">(Irvine)</span>
+          <a class="talk-link" href="#belegratis"><span class="talk">On Comparing Modal and First-Order Theories</span></a>
+        </div>
+      </div>
+      <div class="slot break">
+        <div class="time">15:15 – 15:30</div>
+        <div class="content">Coffee</div>
+      </div>
+      <div class="slot">
+        <div class="time">15:30 – 16:45</div>
+        <div class="content">
+          <span class="speaker">Cyrille Imbert</span> <span class="affiliation">(Nancy)</span>
+          <a class="talk-link" href="#imbert"><span class="talk">Title TBA</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <h2>Abstracts</h2>
+
+    <article class="abstract" id="scontras">
+      <h3>Projection without lexically-specified presupposition</h3>
+      <div class="who">Greg Scontras &middot; Irvine</div>
+      <p>I&rsquo;ll present some recent research on presupposition projection, unpacking how a sentence like &ldquo;Cole doesn&rsquo;t know that Charley speaks Spanish&rdquo; leads to the inference that Charley speaks Spanish, even though that information appears under entailment-cancelling negation. The analysis I&rsquo;ll put forward derives projection inferences by reasoning pragmatically about utterance informativity with respect to the Question Under Discussion and private speaker assumptions. I&rsquo;ll show that this reasoning-based analysis fares better than other contemporary analyses both empirically and conceptually; the analysis also extends seamlessly to entailment-cancelling operators beyond negation and projective content beyond &ldquo;know&rdquo;.</p>
+    </article>
+
+    <article class="abstract" id="wehmeier">
+      <h3>Universal Logical Grammar</h3>
+      <div class="who">Kai Wehmeier &middot; Irvine</div>
+      <p class="nb">This talk is at the same time a contribution to the <a href="https://www.panalm.org/">Paris–Nancy Colloquium in Logic and the Philosophy of Mathematics (PANALM)</a>.</p>
+      <p>I will present Universal Logical Grammar (ULG), the framework of my ongoing research program, and some results obtained within it. ULG is inspired by Richard Montague&rsquo;s influential 1970 article &ldquo;Universal Grammar&rdquo; (UG) but &mdash; unlike Montague&rsquo;s approach &mdash; focuses exclusively on formal-logical languages, thus setting aside, at least for the time being, any ambition to analyze natural languages directly. ULG differs architecturally from UG and its later developments mainly by (a) not requiring interpretations to be compositional and (b) taking syntactic categories to refine, rather than coincide with, the syntactic algebra&rsquo;s sorts. These architectural innovations make possible substantive new insights regarding the grammatical properties of compositionality and extensionality, and how they are constrained by the consequence relations generated by grammars.</p>
+    </article>
+
+    <article class="abstract" id="mercier">
+      <h3>What is the elementary theory of the category of sets?</h3>
+      <div class="who">Antoine Mercier &middot; Irvine</div>
+      <p>While category theory is often proposed as a foundation for mathematics, it is often left unspecified how exactly it&rsquo;s supposed to play its foundational role. This talk will explore the model theory of the elementary theory of the category of sets (ETCS), focusing on definability, invariance, and categoricity-like properties. These results will bring out some incongruities between the ideological claims made about ETCS&rsquo;s virtues, and its formal capabilities.</p>
+    </article>
+
+    <article class="abstract" id="usma-gomez">
+      <h3>Title TBA</h3>
+      <div class="who">Daniel Usma Gomez &middot; Archives Henri-Poincaré, Nancy</div>
+      <p class="tba">Title and abstract forthcoming.</p>
+    </article>
+
+    <article class="abstract" id="narboux">
+      <h3>&lsquo;Gas against gas&rsquo;: Wittgenstein and Hardy on Mathematical Proof</h3>
+      <div class="who">Jean-Philippe Narboux &middot; Université de Strasbourg</div>
+      <p>If we are to do justice to ordinary mathematical practice, must we not admit a division of mathematical proofs between two kinds: namely, a division between, on the one hand, proofs that aim at eliciting conviction in the truth of a mathematical proposition (by adducing such grounds as suffice to secure conviction) and, on the other hand, proofs that aim at establishing the truth of a mathematical proposition (by laying out the gap-free chain of deductions from which it follows)? I propose to address this question by reexamining the substance and historical context of Wittgenstein&rsquo;s sustained criticism of G.H. Hardy&rsquo;s essay on &ldquo;Mathematical Proof&rdquo; in his <em>Lectures on the Foundations of Mathematics</em> of 1939.</p>
+    </article>
+
+    <article class="abstract" id="akiyoshi">
+      <h3>Takeuti&rsquo;s Pluralism in Light of Gödel</h3>
+      <div class="who">Ryota Akiyoshi &middot; The University of Electro-Communications, Tokyo</div>
+      <p>Kurt Gödel and Gaisi Takeuti were two major figures in twentieth-century mathematical logic who shared a deep interest in the philosophical foundations of mathematics. Takeuti was invited to the Institute for Advanced Study in Princeton several times by Gödel, who held Takeuti&rsquo;s proof-theoretic program on consistency in high esteem. The two are also known to have engaged in philosophical discussions, and the key term &ldquo;mind,&rdquo; which Takeuti employed in his philosophical writings in the 1970s, was suggested by Gödel himself.</p>
+      <p>This talk examines Takeuti&rsquo;s conception of the foundations of mathematics in comparison with Gödel&rsquo;s, taking the concept of mind as a guiding key. I first briefly review Takeuti&rsquo;s proof-theoretic program, especially his attempt to extend Gentzen&rsquo;s consistency program to stronger systems of analysis. I then consider how Takeuti&rsquo;s reflections on proof theory led him to a broader philosophical conception of foundations in terms of different kinds of mind.</p>
+      <p>I argue that, while Gödel cannot straightforwardly be regarded as a pluralist despite his serious engagement with diverse foundational positions, Takeuti developed a distinctive but qualified form of foundational pluralism. Unlike Gödel, Takeuti did not organize different foundational standpoints into a comparable hierarchy. At the same time, his pluralism was not unrestricted: his discussion of set-theoretic axioms suggests that the notion of self-reflection played an important role in his philosophical assessment of mathematical principles. The comparison thus helps clarify both the pluralistic character and the limits of Takeuti&rsquo;s philosophy of mathematics.</p>
+    </article>
+
+    <article class="abstract" id="belegratis">
+      <h3>On Comparing Modal and First-Order Theories</h3>
+      <div class="who">Orestis Dimou Belegratis &middot; Irvine</div>
+      <p>A recent interest in broadly Aristotelian and Cantorian ideas about the infinite has led to a debate regarding whether the universe of sets (or the natural numbers) is actually or merely potentially infinite. Proponents of the latter horn of the dichotomy have attempted to explicate the idea of potentialism using modal languages. Given that modern foundational practices are mainly carried out in first-order logic, potentialists attempt to compare their modal theories to first-order ones by providing certain translations between the two languages that preserve particular syntactic and semantic features of the theories. This talk aims to shed more light on the relationship between modal and first-order foundational theories, such as theories of arithmetic and set theory. The goal is to prove more detailed results relating theories couched in these two logics, to generalize some existing results in that area, and, finally, to provide an insight into what is at stake when we decide to carry out our foundational enterprise in modal logic rather than first-order logic.</p>
+    </article>
+
+    <article class="abstract" id="imbert">
+      <h3>Title TBA</h3>
+      <div class="who">Cyrille Imbert &middot; Archives Henri-Poincaré, Nancy</div>
+      <p class="tba">Title and abstract forthcoming.</p>
+    </article>
+
+  </section>
+
+  <footer>
+    FaTiLLaM &middot; Archives Henri-Poincaré · C-ALPHA
+  </footer>
+
+</div>
+</body>
+</html>
